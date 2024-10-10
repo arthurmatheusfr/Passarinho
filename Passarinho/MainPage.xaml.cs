@@ -2,23 +2,22 @@
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+	const int Gravidade = 1;
+	const int TempoEntreFrames = 25;//ms
+	bool EstaMorto = false;
 
 	public MainPage()
 	{
 		InitializeComponent();
 	}
-
-	private void OnCounterClicked(object sender, EventArgs e)
+    void AplicaGravidade()
 	{
-		count++;
-
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
+		UrubuImg.transactionY+=Gravidade; 
+	}
+	protected override void OnApearing()
+	{
+		base.OnAppearing();
+		Desenha();
 	}
 }
 
