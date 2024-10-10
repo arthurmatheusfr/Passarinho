@@ -12,7 +12,7 @@ public partial class MainPage : ContentPage
 	}
     void AplicaGravidade()
 	{
-		UrubuImg.transactionY+=Gravidade; 
+		urubu.transactionY+=Gravidade; 
 	}
 	protected override void OnApearing()
 	{
