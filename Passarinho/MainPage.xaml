@@ -3,31 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Passarinho.MainPage">
 
-
-    <Grid>
-       
-        <Image Source="Deserto.jpg"
+  <Grid>
+        
+        <Image Source="deserto.jpg"
                VerticalOptions="Fill"
                HorizontalOptions="Fill"/>
-      
-        <Image Source="urubu.png"
+       
+        <Image Source="passarinho.png"
                HeightRequest="50"
                WidthRequest="50"
                HorizontalOptions="Start"/>
-       
-        <Image Source="cactocima.png"
+
+        <Image Source="cactobaixo.png"
             VerticalOptions="Start"
             HorizontalOptions="End"/>
-    
-        <Image Source="cactobaixo.png"/>
-     
-        <Image Source="chao.jpg"
+
+        <Image Source="cactocima.png"
+          VerticalOptions="End"
+            HorizontalOptions="Start"/>
+        <Image Source="chao.png"
                VerticalOptions="EndAndExpand"
                HeightRequest="600"
                WidthRequest="1000"/>
-    
-        <Frame IsVisible="false">
-            <Image Source="gameover.png"/>
+ 
+        <Frame IsVisible="true">
+            <Image Source="gameover.png"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"/>
+            <Frame.GestureRecognizers>
+            <TapGestureRecognizer 
+            Tapped="OnGameOverClicked">
+            </TapGestureRecognizer>
+            </Frame.GestureRecognizers>
         </Frame>
     </Grid>
 </ContentPage>

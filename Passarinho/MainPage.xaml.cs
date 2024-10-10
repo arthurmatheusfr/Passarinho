@@ -14,10 +14,24 @@ public partial class MainPage : ContentPage
 	{
 		urubu.transactionY+=Gravidade; 
 	}
-	protected override void OnApearing()
+	
+	async Task Desenha()
 	{
-		base.OnAppearing();
-		Desenha();
+		while (!EstaMorto)
+		{
+			AplicaGravidade();
+			await Task.Delay(TempoEntreFrames);
+		}
 	}
+	void OnGameOverClicked(object s, TappedEventArgs a)
+	{
+		FrameGameOver.IsVisible=false;
+		Inicializar();
+		Desenha();
+			}
+			void Inicializar()
+			{
+				urubu.TranslationY=0;
+			}
 }
 
