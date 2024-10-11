@@ -6,35 +6,29 @@
   <Grid>
         
         <Image Source="deserto.jpg"
-               VerticalOptions="Fill"
-               HorizontalOptions="Fill"/>
+               Aspect="Fill"
+               />
        
-        <Image Source="passarinho.png"
-               HeightRequest="50"
-               WidthRequest="50"
+        <Image x:Name="urubu"
+               Source="urubu.png"
+               HeightRequest="150"
+               WidthRequest="150"
                HorizontalOptions="Start"/>
 
-        <Image Source="cactobaixo.png"
+        <Image x:Name="imgcactocima" 
+            Source="cactocima.png"
+            MaximumHeightRequest="200"
             VerticalOptions="Start"
-            HorizontalOptions="End"/>
+           />
 
-        <Image Source="cactocima.png"
+        <Image x:Name="imgcactobaixo" 
+          Source="cactobaixo.png"
           VerticalOptions="End"
-            HorizontalOptions="Start"/>
+          MaximumHeightRequest="200"/>
         <Image Source="chao.png"
-               VerticalOptions="EndAndExpand"
-               HeightRequest="600"
-               WidthRequest="1000"/>
+               VerticalOptions="End"
+               HorizontalOptions="Fill" />
  
-        <Frame IsVisible="true">
-            <Image Source="gameover.png"
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill"/>
-            <Frame.GestureRecognizers>
-            <TapGestureRecognizer 
-            Tapped="OnGameOverClicked">
-            </TapGestureRecognizer>
-            </Frame.GestureRecognizers>
-        </Frame>
+      
     </Grid>
 </ContentPage>

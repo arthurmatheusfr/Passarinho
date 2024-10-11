@@ -2,6 +2,9 @@
 
 public partial class MainPage : ContentPage
 {
+	double LarguraJanela = 0;
+	double AlturaJanela = 0;
+	int Velocidade = 20;
 	const int Gravidade = 1;
 	const int TempoEntreFrames = 25;//ms
 	bool EstaMorto = false;
@@ -12,26 +15,38 @@ public partial class MainPage : ContentPage
 	}
     void AplicaGravidade()
 	{
-		urubu.transactionY+=Gravidade; 
+		urubu.TranslationY+=Gravidade; 
 	}
 	
 	async Task Desenha()
 	{
 		while (!EstaMorto)
 		{
+			GerenciaCanos();
 			AplicaGravidade();
 			await Task.Delay(TempoEntreFrames);
 		}
 	}
-	void OnGameOverClicked(object s, TappedEventArgs a)
-	{
-		FrameGameOver.IsVisible=false;
-		Inicializar();
-		Desenha();
-			}
+	
 			void Inicializar()
 			{
 				urubu.TranslationY=0;
+			}
+			protected override void OnSizeAllocated(double w, double h)
+			{
+				base.OnSizeAllocated(w, h);
+				LarguraJanela = w;
+				AlturaJanela = h;
+			}
+			void GerenciaCanos()
+			{
+				imgcactocima.TranslationY-= Velocidade;
+				imgcactobaixo.TranslationX-= Velocidade;
+				if(imgcactobaixo.TranslationX<-LarguraJanela)
+				{
+					imgcactobaixo.TranslationX = 0;
+					imgcactocima.TranslationX = 0;
+				}
 			}
 }
 
