@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Passarinho.MainPage">
+             x:Class="Passarinho.MainPage"
+             Shell.NavBarIsVisible="false">
 
-  <Grid>
-        
+  <Grid>       
+        <Grid.GestureRecognizers>
+   <TapGestureRecognizer Tapped="OnGridClicked"/>
+  </Grid.GestureRecognizers>
         <Image Source="deserto.jpg"
                Aspect="Fill"
                />
@@ -17,18 +20,31 @@
 
         <Image x:Name="imgcactocima" 
             Source="cactocima.png"
-            MaximumHeightRequest="200"
+            MaximumHeightRequest="275"
             VerticalOptions="Start"
            />
 
         <Image x:Name="imgcactobaixo" 
           Source="cactobaixo.png"
           VerticalOptions="End"
-          MaximumHeightRequest="200"/>
-        <Image Source="chao.png"
-               VerticalOptions="End"
-               HorizontalOptions="Fill" />
+          MaximumHeightRequest="275"/>
+        <Image Source="chao.jpg"
+               x:Name="imgChao"
+              VerticalOptions="End"
+              HorizontalOptions="Start"
+              HeightRequest="75"
+              Aspect="Fill"/>
+              <Frame IsVisible="true"
+                     x:Name="frameGameOver"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill"
+                     BackgroundColor="Transparent">
+                     <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGameOverClicked"/>
+                     </Frame.GestureRecognizers>
+                     <Image Source="gameover.png"/>
+              </Frame>
  
-      
+    
     </Grid>
 </ContentPage>
