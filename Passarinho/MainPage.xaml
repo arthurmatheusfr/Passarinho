@@ -13,20 +13,24 @@
        
         <Image x:Name="urubu"
                Source="urubu.png"
-               HeightRequest="150"
-               WidthRequest="150"
+             MaximumHeightRequest="650"
+          MaximumWidthRequest="50"
                HorizontalOptions="Start"/>
 
         <Image x:Name="imgcactocima" 
             Source="cactocima.png"
-            MaximumHeightRequest="275"
+            BackgroundColor="Aqua"
+             MaximumHeightRequest="650"
+            MaximumWidthRequest="50"
             VerticalOptions="Start"
            />
 
         <Image x:Name="imgcactobaixo" 
           Source="cactobaixo.png"
           VerticalOptions="End"
-          MaximumHeightRequest="275"/>
+          BackgroundColor="Aqua"
+          MaximumHeightRequest="650"
+          MaximumWidthRequest="50"/>
         <Image Source="chao.jpg"
                x:Name="imgChao"
               VerticalOptions="End"
@@ -39,7 +43,7 @@
                      VerticalOptions="Fill"
                      BackgroundColor="Transparent">
                      <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnGameOverClicked"/>
+                     <TapGestureRecognizer Tapped="OnGameOverClicked"/>
                      </Frame.GestureRecognizers>
                      <Image Source="gameover.png"/>
               </Frame>
