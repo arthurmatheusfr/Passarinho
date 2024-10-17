@@ -2,16 +2,17 @@
 
 public partial class MainPage : ContentPage
 {
-	double LarguraJanela = 0;
-	double AlturaJanela = 0;
-	int Velocidade = 20;
-	const int Gravidade = 1;
-	const int TempoEntreFrames = 25;//ms
-	bool EstaMorto = false;
 	const int ForcaPulo = 30;
 	const int MaxTempoPulando = 3;
-	bool EstaPulando = false;
+	const int Gravidade = 5;
+	const int TempoEntreFrames = 25;//ms
+	const int aberturaMinima = 100;
+	int Velocidade = 20;
 	int tempoPulando = 0;
+	bool EstaMorto = true;
+	bool EstaPulando = false;
+	double LarguraJanela = 0;
+	double AlturaJanela = 0;
 
 	public MainPage()
 	{
@@ -27,7 +28,10 @@ public partial class MainPage : ContentPage
 		while (!EstaMorto)
 		{
 			GerenciaCanos();
-			AplicaGravidade();
+			if (EstaPulando)
+				AplicaPulo();
+			else
+				AplicaGravidade();
 			if (VericaColizao())
 			{
 				EstaMorto = true;
@@ -35,24 +39,7 @@ public partial class MainPage : ContentPage
 				break;
 			}
 			await Task.Delay(TempoEntreFrames);
-
 		}
-		if (EstaPulando)
-			AplicaPulo();
-		else
-			AplicaGravidade();
-		void AplicaPulo()
-		{
-			urubu.TranslationY -= ForcaPulo;
-			tempoPulando++;
-			
-			if (tempoPulando >= MaxTempoPulando)
-			{
-				EstaPulando = false;
-				tempoPulando = 0;
-			}
-		}
-
 	}
 
 	void OnGridClicked(object s, TappedEventArgs a)
@@ -69,7 +56,10 @@ public partial class MainPage : ContentPage
 
 	void Inicializar()
 	{
+		EstaMorto = false;
 		urubu.TranslationY = 0;
+		imgcactobaixo.TranslationX = 0;
+		imgcactocima.TranslationX = 0;
 	}
 	protected override void OnSizeAllocated(double w, double h)
 	{
@@ -86,6 +76,12 @@ public partial class MainPage : ContentPage
 			imgcactobaixo.TranslationX = 0;
 			imgcactocima.TranslationX = 0;
 		}
+
+		var alturaMaxima = -100;
+		var alturaMinima = -imgcactobaixo.HeightRequest;
+
+		imgcactocima.TranslationY = Random.Shared.Next((int)alturaMinima, (int)alturaMaxima);
+		imgcactobaixo.TranslationY = imgcactocima.TranslationY + aberturaMinima + imgcactobaixo.HeightRequest;
 	}
 	bool VerificaColizaoTeto()
 	{
@@ -99,7 +95,7 @@ public partial class MainPage : ContentPage
 
 	bool VerificaColizaoChao()
 	{
-		var maxY = AlturaJanela / 2 - imgChao.HeightRequest - 210;
+		var maxY = AlturaJanela / 2 - imgChao.HeightRequest;
 
 		if (urubu.TranslationY >= maxY)
 			return true;
@@ -118,6 +114,18 @@ public partial class MainPage : ContentPage
 		}
 
 		return false;
+	}
+
+	void AplicaPulo()
+	{
+		urubu.TranslationY -= ForcaPulo;
+		tempoPulando++;
+
+		if (tempoPulando >= MaxTempoPulando)
+		{
+			EstaPulando = false;
+			tempoPulando = 0;
+		}
 	}
 }
 

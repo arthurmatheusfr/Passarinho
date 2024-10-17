@@ -9,8 +9,7 @@
    <TapGestureRecognizer Tapped="OnGridClicked"/>
   </Grid.GestureRecognizers>
         <Image Source="deserto.jpg"
-               Aspect="Fill"
-               />
+               Aspect="Fill"/>
        
         <Image x:Name="urubu"
                Source="urubu.png"
