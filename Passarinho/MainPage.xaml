@@ -4,50 +4,49 @@
              x:Class="Passarinho.MainPage"
              Shell.NavBarIsVisible="false">
 
-  <Grid>       
-        <Grid.GestureRecognizers>
-   <TapGestureRecognizer Tapped="OnGridClicked"/>
-  </Grid.GestureRecognizers>
-        <Image Source="deserto.jpg"
-               Aspect="Fill"/>
-       
-        <Image x:Name="urubu"
-               Source="urubu.png"
-             MaximumHeightRequest="650"
-          MaximumWidthRequest="50"
-               HorizontalOptions="Start"/>
+       <Grid>
+              <Grid.GestureRecognizers>
+                     <TapGestureRecognizer Tapped="OnGridClicked"/>
+              </Grid.GestureRecognizers>
+              <Image Source="deserto.jpg"
+                     Aspect="Fill"/>
 
-        <Image x:Name="imgcactocima" 
-            Source="cactocima.png"
-            BackgroundColor="Aqua"
-             MaximumHeightRequest="650"
-            MaximumWidthRequest="50"
-            VerticalOptions="Start"
-           />
+              <Image x:Name="urubu"
+                     Source="urubu.png"
+                     HeightRequest="50"
+                     WidthRequest="50"
+                     HorizontalOptions="Start"/>
 
-        <Image x:Name="imgcactobaixo" 
-          Source="cactobaixo.png"
-          VerticalOptions="End"
-          BackgroundColor="Aqua"
-          MaximumHeightRequest="650"
-          MaximumWidthRequest="50"/>
-        <Image Source="chao.jpg"
-               x:Name="imgChao"
-              VerticalOptions="End"
-              HorizontalOptions="Start"
-              HeightRequest="75"
-              Aspect="Fill"/>
+              <Image x:Name="imgcactocima"
+                     Source="cactocima.png"
+                     BackgroundColor="Aqua"
+                     HeightRequest="650"
+                     WidthRequest="50"
+                     VerticalOptions="Start"/>
+
+              <Image x:Name="imgcactobaixo"
+                     Source="cactobaixo.png"
+                     VerticalOptions="End"
+                     BackgroundColor="Aqua"
+                     HeightRequest="650"
+                     WidthRequest="50"/>
+              <Image Source="chao.jpg"
+                     x:Name="imgChao"
+                     VerticalOptions="End"
+                     HorizontalOptions="Start"
+                     HeightRequest="75"
+                     Aspect="Fill"/>
               <Frame IsVisible="true"
                      x:Name="frameGameOver"
                      HorizontalOptions="Fill"
                      VerticalOptions="Fill"
                      BackgroundColor="Transparent">
                      <Frame.GestureRecognizers>
-                     <TapGestureRecognizer Tapped="OnGameOverClicked"/>
+                            <TapGestureRecognizer Tapped="OnGameOverClicked"/>
                      </Frame.GestureRecognizers>
                      <Image Source="gameover.png"/>
               </Frame>
- 
-    
-    </Grid>
+
+
+       </Grid>
 </ContentPage>

@@ -75,13 +75,12 @@ public partial class MainPage : ContentPage
 		{
 			imgcactobaixo.TranslationX = 0;
 			imgcactocima.TranslationX = 0;
-		}
-
 		var alturaMaxima = -100;
 		var alturaMinima = -imgcactobaixo.HeightRequest;
 
 		imgcactocima.TranslationY = Random.Shared.Next((int)alturaMinima, (int)alturaMaxima);
 		imgcactobaixo.TranslationY = imgcactocima.TranslationY + aberturaMinima + imgcactobaixo.HeightRequest;
+		}
 	}
 	bool VerificaColizaoTeto()
 	{
