@@ -126,5 +126,20 @@ public partial class MainPage : ContentPage
 			tempoPulando = 0;
 		}
 	}
+	VerificaColisaoCactoCima()
+	{
+      var posHUrubu = (LarguraJanela/2)-(urubu.WidthRequest/2);
+	  var posVUrubu = (LarguraJanela/2)-(urubu.HeightRequest/2)+urubu.TranslationY;
+	  if (posHUrubu >=Math.Abs(imgcactocima.TranslationX-imgcactocima.WidthRequest)&&
+	  posHUrubu <=Math.Abs(imgcactocima.TranslationX+imgcactocima.WidthRequest)&&
+	  posVUrubu <=imgcactocima.HeightRequest+imgcactocima.TranslationY)
+	  {
+		return true;
+	  }
+	  else
+	  {
+		return false;
+	  }
+	}
 }
 
