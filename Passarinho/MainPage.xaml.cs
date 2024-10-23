@@ -13,6 +13,7 @@ public partial class MainPage : ContentPage
 	bool EstaPulando = false;
 	double LarguraJanela = 0;
 	double AlturaJanela = 0;
+	int pontuacao = 0;
 
 	public MainPage()
 	{
