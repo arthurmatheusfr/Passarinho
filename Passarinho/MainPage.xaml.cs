@@ -57,9 +57,12 @@ public partial class MainPage : ContentPage
 	void Inicializar()
 	{
 		EstaMorto = false;
-		urubu.TranslationY = 0;
-		imgcactobaixo.TranslationX = 0;
-		imgcactocima.TranslationX = 0;
+	urubu.TranslationY = 0;
+		urubu.TranslationX = 0;
+		imgcactobaixo.TranslationX = -LarguraJanela;
+		imgcactocima.TranslationX = -LarguraJanela;
+		pontuacao = 0;
+		GerenciaCanos();
 	}
 	protected override void OnSizeAllocated(double w, double h)
 	{
@@ -80,6 +83,8 @@ public partial class MainPage : ContentPage
 
 		imgcactocima.TranslationY = Random.Shared.Next((int)alturaMinima, (int)alturaMaxima);
 		imgcactobaixo.TranslationY = imgcactocima.TranslationY + aberturaMinima + imgcactobaixo.HeightRequest;
+		pontuacao++;
+			labelPontuacao.Text = "Canos: " + pontuacao.ToString("D3");
 		}
 	}
 	bool VerificaColizaoTeto()
@@ -126,10 +131,11 @@ public partial class MainPage : ContentPage
 			tempoPulando = 0;
 		}
 	}
-	VerificaColisaoCactoCima()
+	bool VerificaColisaoCactoCima()
 	{
       var posHUrubu = (LarguraJanela/2)-(urubu.WidthRequest/2);
 	  var posVUrubu = (LarguraJanela/2)-(urubu.HeightRequest/2)+urubu.TranslationY;
+	  var yMaxCacto = imgcactobaixo.HeightRequest + imgcactobaixo.TranslationY+aberturaMinima;
 	  if (posHUrubu >=Math.Abs(imgcactocima.TranslationX-imgcactocima.WidthRequest)&&
 	  posHUrubu <=Math.Abs(imgcactocima.TranslationX+imgcactocima.WidthRequest)&&
 	  posVUrubu <=imgcactocima.HeightRequest+imgcactocima.TranslationY)

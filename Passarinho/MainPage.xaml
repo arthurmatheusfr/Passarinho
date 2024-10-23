@@ -36,6 +36,18 @@
                      HorizontalOptions="Start"
                      HeightRequest="75"
                      Aspect="Fill"/>
+                <Frame HorizontalOptions="End"
+                     VerticalOptions="Start"
+                     BorderColor="White"
+                     BackgroundColor="Transparent"
+                     Margin="20"
+                     HeightRequest="60"
+                     WidthRequest="180">
+                     <Label Text="Canos: 000"
+                            x:Name="labelPontuacao"
+                            TextColor="White"
+                            HorizontalTextAlignment="Start"/>
+              </Frame>
               <Frame IsVisible="true"
                      x:Name="frameGameOver"
                      HorizontalOptions="Fill"
@@ -46,7 +58,7 @@
                      </Frame.GestureRecognizers>
                      <Image Source="gameover.png"/>
               </Frame>
-
+          
 
        </Grid>
 </ContentPage>
