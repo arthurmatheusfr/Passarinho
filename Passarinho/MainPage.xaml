@@ -15,20 +15,24 @@
                      Source="urubu.png"
                      HeightRequest="50"
                      WidthRequest="50"
-                     HorizontalOptions="Start"/>
+                     HorizontalOptions="Start"
+                     VerticalOptions="Center"/>
 
               <Image x:Name="imgcactocima"
                      Source="cactocima.png"
-                     BackgroundColor="Aqua"
-                     HeightRequest="650"
+                     Aspect="Fill"
+                     HeightRequest="620"
                      WidthRequest="50"
+                     HorizontalOptions="End"
                      VerticalOptions="Start"/>
 
               <Image x:Name="imgcactobaixo"
                      Source="cactobaixo.png"
-                     VerticalOptions="End"
-                     BackgroundColor="Aqua"
-                     HeightRequest="650"
+                     VerticalOptions="Start"
+                     Margin="0,0,0,20"
+                     Aspect="Fill"
+                     HorizontalOptions="End"
+                     HeightRequest="620"
                      WidthRequest="50"/>
               <Image Source="chao.jpg"
                      x:Name="imgChao"
@@ -38,14 +42,14 @@
                      Aspect="Fill"/>
                 <Frame HorizontalOptions="End"
                      VerticalOptions="Start"
-                     BorderColor="White"
-                     BackgroundColor="Transparent"
+                     BorderColor="Red"
+                     BackgroundColor="White"
                      Margin="20"
                      HeightRequest="60"
                      WidthRequest="180">
                      <Label Text="Canos: 000"
                             x:Name="labelPontuacao"
-                            TextColor="White"
+                            TextColor="IndianRed"
                             HorizontalTextAlignment="Start"/>
               </Frame>
               <Frame IsVisible="true"

@@ -6,7 +6,7 @@ public partial class MainPage : ContentPage
 	const int MaxTempoPulando = 3;
 	const int Gravidade = 5;
 	const int TempoEntreFrames = 25;//ms
-	const int aberturaMinima = 100;
+	const int aberturaMinima = 200;
 	int Velocidade = 20;
 	int tempoPulando = 0;
 	bool EstaMorto = true;
@@ -70,6 +70,11 @@ public partial class MainPage : ContentPage
 		base.OnSizeAllocated(w, h);
 		LarguraJanela = w;
 		AlturaJanela = h;
+		if (h > 0)
+    {
+      imgcactocima.HeightRequest  = h - imgChao.HeightRequest;
+      imgcactobaixo.HeightRequest = h - imgChao.HeightRequest;
+    }
 	}
 	void GerenciaCanos()
 	{
@@ -79,13 +84,16 @@ public partial class MainPage : ContentPage
 		{
 			imgcactobaixo.TranslationX = 0;
 			imgcactocima.TranslationX = 0;
-		var alturaMaxima = -100;
-		var alturaMinima = -imgcactobaixo.HeightRequest;
+		var alturaMaxima = -(imgcactobaixo.HeightRequest * 0.1);
+      var alturaMinima = -(imgcactobaixo.HeightRequest * 0.8);
 
-		imgcactocima.TranslationY = Random.Shared.Next((int)alturaMinima, (int)alturaMaxima);
-		imgcactobaixo.TranslationY = imgcactocima.TranslationY + aberturaMinima + imgcactobaixo.HeightRequest;
-		pontuacao++;
-			labelPontuacao.Text = "Canos: " + pontuacao.ToString("D3");
+		imgcactocima.TranslationY  = Random.Shared.Next((int)alturaMinima, (int)alturaMaxima);
+      imgcactobaixo.TranslationY = imgcactocima.HeightRequest + imgcactocima.TranslationY + aberturaMinima;
+
+      pontuacao++;
+      labelPontuacao.Text = "Pontuação: " + pontuacao.ToString("D5");
+      if (pontuacao % 4 == 0)
+        Velocidade++;
 		}
 	}
 	bool VerificaColizaoTeto()
@@ -110,16 +118,16 @@ public partial class MainPage : ContentPage
 
 	bool VericaColizao()
 	{
-		if (!EstaMorto)
-		{
-			if (VerificaColizaoTeto() || VerificaColizaoChao())
-			{
-				return true;
-			}
-		}
-
-		return false;
+		return (!EstaMorto && (VerificaColizaoChao() || VerificaColizaoTeto() || VerificaColizaoCacto()));
 	}
+	bool VerificaColizaoCacto()
+  {
+    if (VerificaColizaoCactoBaixo() || VerificaColizaoCactoCima())
+      return true;
+    else
+      return false;
+  }
+
 
 	void AplicaPulo()
 	{
@@ -132,21 +140,38 @@ public partial class MainPage : ContentPage
 			tempoPulando = 0;
 		}
 	}
-	bool VerificaColisaoCactoCima()
+	
+	
+	bool VerificaColizaoCactoCima()
 	{
-      var posHUrubu = (LarguraJanela/2)-(urubu.WidthRequest/2);
-	  var posVUrubu = (LarguraJanela/2)-(urubu.HeightRequest/2)+urubu.TranslationY;
-	  var yMaxCacto = imgcactobaixo.HeightRequest + imgcactobaixo.TranslationY+aberturaMinima;
-	  if (posHUrubu >=Math.Abs(imgcactocima.TranslationX-imgcactocima.WidthRequest)&&
-	  posHUrubu <=Math.Abs(imgcactocima.TranslationX+imgcactocima.WidthRequest)&&
-	  posVUrubu <=imgcactocima.HeightRequest+imgcactocima.TranslationY)
-	  {
-		return true;
-	  }
-	  else
-	  {
-		return false;
-	  }
-	}
+    var posHUrubu = (LarguraJanela - 50) - (urubu.WidthRequest / 2);
+    var posVUrubu   = (AlturaJanela / 2) - (urubu.HeightRequest / 2) + urubu.TranslationY;
+
+    if (
+         posHUrubu >= Math.Abs(imgcactocima.TranslationX) - imgcactocima.WidthRequest &&
+         posHUrubu <= Math.Abs(imgcactocima.TranslationX) + imgcactocima.WidthRequest &&
+         posVUrubu   <= imgcactocima.HeightRequest + imgcactocima.TranslationY
+       )
+      return true;
+    else
+      return false;
+  }
+
+	bool VerificaColizaoCactoBaixo()
+  {
+    var posHUrubu = LarguraJanela - 50 - urubu.WidthRequest / 2;
+    var posVUrubu   = (AlturaJanela / 2) + (urubu.HeightRequest / 2) + urubu.TranslationY;
+
+    var yMaxCano = imgcactocima.HeightRequest + imgcactocima.TranslationY + aberturaMinima;
+
+    if (
+         posHUrubu >= Math.Abs(imgcactocima.TranslationX) - imgcactocima.WidthRequest &&
+        posHUrubu <= Math.Abs(imgcactocima.TranslationX) + imgcactocima.WidthRequest &&
+          posVUrubu   >= yMaxCano
+       )
+      return true;
+    else
+      return false;
+  }
 }
 
